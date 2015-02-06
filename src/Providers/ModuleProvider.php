@@ -1,25 +1,18 @@
 <?php
 namespace TypiCMS\Modules\Blocks\Providers;
 
-use Lang;
-use View;
 use Config;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Application;
-
-// Model
+use Illuminate\Support\ServiceProvider;
+use Lang;
 use TypiCMS\Modules\Blocks\Models\Block;
-
-// Repo
-use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
-
-// Cache
 use TypiCMS\Modules\Blocks\Repositories\CacheDecorator;
-use TypiCMS\Services\Cache\LaravelCache;
-
-// Form
+use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 use TypiCMS\Modules\Blocks\Services\Form\BlockForm;
 use TypiCMS\Modules\Blocks\Services\Form\BlockFormLaravelValidator;
+use TypiCMS\Services\Cache\LaravelCache;
+use View;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -30,9 +23,19 @@ class ModuleProvider extends ServiceProvider
         require __DIR__ . '/../routes.php';
 
         // Add dirs
-        View::addLocation(__DIR__ . '/../Views');
-        Lang::addNamespace('blocks', __DIR__ . '/../lang');
-        Config::addNamespace('blocks', __DIR__ . '/../config');
+        View::addNamespace('blocks', __DIR__ . '/../views/');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'blocks');
+        $this->publishes([
+            __DIR__ . '/../config/' => config_path('typicms/blocks'),
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/../migrations/' => base_path('/database/migrations'),
+        ], 'migrations');
+
+        AliasLoader::getInstance()->alias(
+            'Blocks',
+            'TypiCMS\Modules\Blocks\Facades\Facade'
+        );
     }
 
     public function register()
@@ -60,10 +63,6 @@ class ModuleProvider extends ServiceProvider
                 new BlockFormLaravelValidator($app['validator']),
                 $app->make('TypiCMS\Modules\Blocks\Repositories\BlockInterface')
             );
-        });
-
-        $app->before(function ($request, $response) {
-            require __DIR__ . '/../breadcrumbs.php';
         });
 
     }
