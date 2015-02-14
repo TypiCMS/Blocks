@@ -7,7 +7,7 @@ Route::bind('blocks', function ($value) {
 
 Route::group(
     array(
-        'namespace' => 'TypiCMS\Modules\Blocks\Controllers',
+        'namespace' => 'TypiCMS\Modules\Blocks\Http\Controllers',
         'prefix'    => 'admin',
     ),
     function () {

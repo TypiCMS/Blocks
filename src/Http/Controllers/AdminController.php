@@ -1,7 +1,7 @@
 <?php
-namespace TypiCMS\Modules\Blocks\Controllers;
+namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
-use TypiCMS\Controllers\AdminSimpleController;
+use TypiCMS\Http\Controllers\AdminSimpleController;
 use TypiCMS\Modules\Blocks\Repositories\BlockInterface;
 use TypiCMS\Modules\Blocks\Services\Form\BlockForm;
 

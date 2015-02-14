@@ -1,7 +1,7 @@
 <?php
-namespace TypiCMS\Modules\Blocks\Controllers;
+namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
-use TypiCMS\Controllers\BaseApiController;
+use TypiCMS\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Blocks\Repositories\BlockInterface as Repository;
 
 class ApiController extends BaseApiController
