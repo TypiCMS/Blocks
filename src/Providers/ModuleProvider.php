@@ -9,8 +9,6 @@ use Lang;
 use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Blocks\Repositories\CacheDecorator;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
-use TypiCMS\Modules\Blocks\Services\Form\BlockForm;
-use TypiCMS\Modules\Blocks\Services\Form\BlockFormLaravelValidator;
 use TypiCMS\Services\Cache\LaravelCache;
 use View;
 
@@ -58,13 +56,6 @@ class ModuleProvider extends ServiceProvider
             $laravelCache = new LaravelCache($app['cache'], 'blocks', 10);
 
             return new CacheDecorator($repository, $laravelCache);
-        });
-
-        $app->bind('TypiCMS\Modules\Blocks\Services\Form\BlockForm', function (Application $app) {
-            return new BlockForm(
-                new BlockFormLaravelValidator($app['validator']),
-                $app->make('TypiCMS\Modules\Blocks\Repositories\BlockInterface')
-            );
         });
 
     }
