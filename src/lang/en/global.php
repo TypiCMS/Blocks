@@ -1,6 +1,6 @@
 <?php
 return array(
-    'name' => 'blocks',
+    'name' => 'Blocks',
     'blocks' => 'block|blocks',
     'New'  => 'New block',
     'Edit' => 'Edit block',
