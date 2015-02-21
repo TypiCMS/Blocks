@@ -17,9 +17,12 @@ class ModuleProvider extends ServiceProvider
 
     public function boot()
     {
-        // Add dirs
-        View::addNamespace('blocks', __DIR__ . '/../views/');
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'blocks');
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'blocks');
+        $this->publishes([
+            __DIR__ . '/../views' => base_path('resources/views/vendor/blocks'),
+        ], 'views');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'blocks');
         $this->mergeConfigFrom(
             __DIR__ . '/../config/config.php', 'typicms.blocks'
         );
