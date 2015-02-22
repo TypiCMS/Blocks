@@ -31,6 +31,9 @@ class ModuleProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../database' => base_path('database'),
         ], 'migrations');
+        $this->publishes([
+            __DIR__ . '/../../tests' => base_path('tests'),
+        ], 'tests');
 
         AliasLoader::getInstance()->alias(
             'Blocks',

@@ -3,15 +3,11 @@ use TypiCMS\Modules\Blocks\Models\Block;
 
 class BlocksControllerTest extends TestCase
 {
-    public function tearDown()
-    {
-        Mockery::close();
-    }
 
     public function testAdminIndex()
     {
-        $this->get('admin/blocks');
-        $this->assertTrue($this->client->getResponse()->isOk());
+        $response = $this->call('GET', 'admin/blocks');
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     public function testStoreFails()
