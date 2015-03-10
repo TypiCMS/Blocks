@@ -1,5 +1,5 @@
 @section('js')
-    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script src="{{ asset('components/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('js/admin/form.js') }}"></script>
 @stop
 
@@ -17,7 +17,7 @@
 
     <div class="tab-pane fade @if($locale == $lang)in active @endif" id="content-{{ $lang }}">
         {!! BootForm::checkbox(trans('validation.attributes.online'), $lang.'[status]') !!}
-        {!! BootForm::textarea(trans('validation.attributes.body'), $lang.'[body]')->addClass('editor') !!}
+        {!! BootForm::textarea(trans('validation.attributes.body'), $lang.'[body]')->addClass('ckeditor') !!}
     </div>
 
 @endforeach
