@@ -8,26 +8,8 @@ class FormRequest extends AbstractFormRequest {
     public function rules()
     {
         $rules = [
-            'name' => 'required|alpha_dash|unique:blocks,name,' . $this->get('id'),
+            'name' => 'required|alpha_dash|unique:blocks,name,' . $this->id,
         ];
         return $rules;
-    }
-
-    /**
-     * Sanitize inputs
-     * 
-     * @return array
-     */
-    public function sanitize()
-    {
-        $input = $this->all();
-
-        // Checkboxes
-        foreach (config('translatable.locales') as $locale) {
-            $input[$locale]['status'] = $this->has($locale . '.status');
-        }
-
-        $this->replace($input);
-        return $this->all();
     }
 }
