@@ -22,7 +22,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
      * @param  array    $with Eager load related models
      * @return Collection
      */
-    public function getAll(array $with = array('translations'), $all = false)
+    public function all(array $with = array('translations'), $all = false)
     {
         $query = $this->make($with);
 

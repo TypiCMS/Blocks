@@ -22,7 +22,7 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
      * @param  array    $with Eager load related models
      * @return Collection
      */
-    public function getAll(array $with = array(), $all = false)
+    public function all(array $with = array(), $all = false)
     {
         $cacheKey = md5(App::getLocale() . 'all' . $all . implode('.', $with));
 
@@ -31,7 +31,7 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
         }
 
         // Item not cached, retrieve it
-        $models = $this->repo->getAll($with, $all);
+        $models = $this->repo->all($with, $all);
 
         // Store in cache for next request
         $this->cache->put($cacheKey, $models);

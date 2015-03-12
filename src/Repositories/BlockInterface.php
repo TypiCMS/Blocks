@@ -14,7 +14,7 @@ interface BlockInterface extends RepositoryInterface
      * @param  array    $with Eager load related models
      * @return Collection
      */
-    public function getAll(array $with = array('translations'), $all = false);
+    public function all(array $with = array('translations'), $all = false);
 
     /**
      * Get the content of a block
