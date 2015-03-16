@@ -58,7 +58,7 @@ class ModuleProvider extends ServiceProvider
 
         $app->bind('TypiCMS\Modules\Blocks\Repositories\BlockInterface', function (Application $app) {
             $repository = new EloquentBlock(new Block);
-            if (! Config::get('app.cache')) {
+            if (! config('typicms.cache')) {
                 return $repository;
             }
             $laravelCache = new LaravelCache($app['cache'], 'blocks', 10);
