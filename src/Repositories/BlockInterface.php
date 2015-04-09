@@ -23,5 +23,15 @@ interface BlockInterface extends RepositoryInterface
      * @param  array  $with linked
      * @return string       html
      */
+    public function render($name = null, array $with = array('translations'));
+
+    /**
+     * Get the content of a block
+     *
+     * @deprecated
+     * @param  string $name unique name of the block
+     * @param  array  $with linked
+     * @return string       html
+     */
     public function build($name = null, array $with = array('translations'));
 }

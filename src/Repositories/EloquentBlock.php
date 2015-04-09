@@ -53,7 +53,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
      * @param  array  $with linked
      * @return string       html
      */
-    public function build($name = null, array $with = array('translations'))
+    public function render($name = null, array $with = array('translations'))
     {
         $block = $this->make($with)
             ->where('name', $name)
@@ -71,5 +71,18 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
         }
 
         return $block->body;
+    }
+
+    /**
+     * Get the content of a block
+     *
+     * @deprecated
+     * @param  string $name unique name of the block
+     * @param  array  $with linked
+     * @return string       html
+     */
+    public function build($name = null, array $with = array('translations'))
+    {
+        return $this->render($name = null, array $with = array('translations'));
     }
 }
