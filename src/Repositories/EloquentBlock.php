@@ -83,6 +83,6 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
      */
     public function build($name = null, array $with = array('translations'))
     {
-        return $this->render($name = null, array $with = array('translations'));
+        return $this->render($name, $with);
     }
 }
