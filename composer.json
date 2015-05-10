@@ -1,6 +1,7 @@
 {
     "name": "typicms/blocks",
     "description": "",
+    "license": "MIT",
     "authors": [
         {
             "name": "Samuel De Backer",
