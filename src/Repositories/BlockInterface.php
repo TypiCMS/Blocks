@@ -2,7 +2,7 @@
 namespace TypiCMS\Modules\Blocks\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
-use TypiCMS\Repositories\RepositoryInterface;
+use TypiCMS\Modules\Core\Repositories\RepositoryInterface;
 
 interface BlockInterface extends RepositoryInterface
 {

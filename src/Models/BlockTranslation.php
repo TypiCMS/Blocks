@@ -1,7 +1,7 @@
 <?php
 namespace TypiCMS\Modules\Blocks\Models;
 
-use TypiCMS\Models\BaseTranslation;
+use TypiCMS\Modules\Core\Models\BaseTranslation;
 
 class BlockTranslation extends BaseTranslation
 {

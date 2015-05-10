@@ -5,7 +5,7 @@ use App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Repositories\RepositoriesAbstract;
+use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
 
 class EloquentBlock extends RepositoriesAbstract implements BlockInterface
 {

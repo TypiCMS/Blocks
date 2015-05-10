@@ -9,7 +9,7 @@ use Lang;
 use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Blocks\Repositories\CacheDecorator;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
-use TypiCMS\Services\Cache\LaravelCache;
+use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 use View;
 
 class ModuleProvider extends ServiceProvider

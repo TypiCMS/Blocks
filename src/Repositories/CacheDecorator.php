@@ -3,8 +3,8 @@ namespace TypiCMS\Modules\Blocks\Repositories;
 
 use App;
 use Illuminate\Database\Eloquent\Collection;
-use TypiCMS\Repositories\CacheAbstractDecorator;
-use TypiCMS\Services\Cache\CacheInterface;
+use TypiCMS\Modules\Core\Repositories\CacheAbstractDecorator;
+use TypiCMS\Modules\Core\Services\Cache\CacheInterface;
 
 class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
 {
