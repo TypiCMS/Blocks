@@ -1,7 +1,6 @@
 <?php
 namespace TypiCMS\Modules\Blocks\Repositories;
 
-use App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +31,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
                 'translations',
                 function (Builder $query) {
                     $query->where('status', 1);
-                    $query->where('locale', App::getLocale());
+                    $query->where('locale', config('app.locale'));
                 }
             );
         }
@@ -61,7 +60,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
                 'translations',
                 function (Builder $query) {
                     $query->where('status', 1);
-                    $query->where('locale', App::getLocale());
+                    $query->where('locale', config('app.locale'));
                 }
             )
             ->first();

@@ -1,7 +1,6 @@
 <?php
 namespace TypiCMS\Modules\Blocks\Repositories;
 
-use App;
 use Illuminate\Database\Eloquent\Collection;
 use TypiCMS\Modules\Core\Repositories\CacheAbstractDecorator;
 use TypiCMS\Modules\Core\Services\Cache\CacheInterface;
@@ -24,7 +23,7 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
      */
     public function all(array $with = array(), $all = false)
     {
-        $cacheKey = md5(App::getLocale() . 'all' . $all . implode('.', $with));
+        $cacheKey = md5(config('app.locale') . 'all' . $all . implode('.', $with));
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
@@ -48,7 +47,7 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
      */
     public function render($name = null, array $with = array('translations'))
     {
-        $cacheKey = md5(App::getLocale() . 'render' . $name . implode('.', $with));
+        $cacheKey = md5(config('app.locale') . 'render' . $name . implode('.', $with));
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
@@ -73,7 +72,7 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
      */
     public function build($name = null, array $with = array('translations'))
     {
-        $cacheKey = md5(App::getLocale() . 'build' . $name . implode('.', $with));
+        $cacheKey = md5(config('app.locale') . 'build' . $name . implode('.', $with));
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
