@@ -1,7 +1,7 @@
 <?php
 namespace TypiCMS\Modules\Blocks\Presenters;
 
-use Laracasts\Presenter\Presenter;
+use TypiCMS\Modules\Core\Presenters\Presenter;
 
 class BlockPresenter extends Presenter
 {
