@@ -32,15 +32,15 @@ class Block extends Base
         'body',
     );
 
-    protected $appends = ['status', 'body'];
+    protected $appends = ['status', 'body_cleaned'];
 
     /**
      * Get Body attribute from translation table
      * and append it to main model attributes
      * @return string
      */
-    public function getBodyAttribute()
+    public function getBodyCleanedAttribute()
     {
-        return $this->body;
+        return strip_tags(html_entity_decode($this->body));
     }
 }
