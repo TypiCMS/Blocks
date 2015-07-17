@@ -25,7 +25,7 @@ class CreateBlocksTable extends Migration
         Schema::create('block_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->increments('id')->unsigned();
+            $table->increments('id');
             $table->integer('block_id')->unsigned();
 
             $table->string('locale');
