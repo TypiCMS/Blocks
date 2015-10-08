@@ -69,7 +69,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
             return;
         }
 
-        return $block->body;
+        return $block->present()->body;
     }
 
     /**
