@@ -25,7 +25,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
     {
         $query = $this->make($with);
 
-        if (! $all) {
+        if (!$all) {
             // take only translated items that are online
             $query->whereHas(
                 'translations',
@@ -65,7 +65,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
             )
             ->first();
 
-        if (! $block) {
+        if (!$block) {
             return;
         }
 
