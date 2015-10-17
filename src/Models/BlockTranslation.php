@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Blocks\Models;
 
 use TypiCMS\Modules\Core\Models\BaseTranslation;
@@ -6,7 +7,7 @@ use TypiCMS\Modules\Core\Models\BaseTranslation;
 class BlockTranslation extends BaseTranslation
 {
     /**
-     * get the parent model
+     * get the parent model.
      */
     public function owner()
     {

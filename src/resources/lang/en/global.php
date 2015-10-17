@@ -1,8 +1,9 @@
 <?php
-return array(
-    'name' => 'Blocks',
+
+return [
+    'name'   => 'Blocks',
     'blocks' => 'block|blocks',
-    'New'  => 'New block',
-    'Edit' => 'Edit block',
-    'Back' => 'Back to blocks',
-);
+    'New'    => 'New block',
+    'Edit'   => 'Edit block',
+    'Back'   => 'Back to blocks',
+];

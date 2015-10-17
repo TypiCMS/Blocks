@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateBlocksTable extends Migration
 {
@@ -35,11 +35,10 @@ class CreateBlocksTable extends Migration
 
             $table->timestamps();
 
-            $table->unique(array('block_id', 'locale'));
+            $table->unique(['block_id', 'locale']);
             $table->foreign('block_id')->references('id')->on('blocks')->onDelete('cascade');
 
         });
-
     }
 
     /**
@@ -52,5 +51,4 @@ class CreateBlocksTable extends Migration
         Schema::drop('block_translations');
         Schema::drop('blocks');
     }
-
 }
