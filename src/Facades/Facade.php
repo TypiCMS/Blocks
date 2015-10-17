@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Blocks\Facades;
 
 use Illuminate\Support\Facades\Facade as MainFacade;

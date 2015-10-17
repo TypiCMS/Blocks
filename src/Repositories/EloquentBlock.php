@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Blocks\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -8,20 +9,20 @@ use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
 
 class EloquentBlock extends RepositoriesAbstract implements BlockInterface
 {
-
     public function __construct(Model $model)
     {
         $this->model = $model;
     }
 
     /**
-     * Get all models
+     * Get all models.
      *
-     * @param  boolean  $all  Show published or all
-     * @param  array    $with Eager load related models
+     * @param bool  $all  Show published or all
+     * @param array $with Eager load related models
+     *
      * @return Collection
      */
-    public function all(array $with = array('translations'), $all = false)
+    public function all(array $with = ['translations'], $all = false)
     {
         $query = $this->make($with);
 
@@ -46,13 +47,14 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
     }
 
     /**
-     * Get the content of a block
+     * Get the content of a block.
      *
-     * @param  string $name unique name of the block
-     * @param  array  $with linked
-     * @return string       html
+     * @param string $name unique name of the block
+     * @param array  $with linked
+     *
+     * @return string html
      */
-    public function render($name = null, array $with = array('translations'))
+    public function render($name = null, array $with = ['translations'])
     {
         $block = $this->make($with)
             ->where('name', $name)
@@ -73,14 +75,16 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
     }
 
     /**
-     * Get the content of a block
+     * Get the content of a block.
      *
      * @deprecated
-     * @param  string $name unique name of the block
-     * @param  array  $with linked
-     * @return string       html
+     *
+     * @param string $name unique name of the block
+     * @param array  $with linked
+     *
+     * @return string html
      */
-    public function build($name = null, array $with = array('translations'))
+    public function build($name = null, array $with = ['translations'])
     {
         return $this->render($name, $with);
     }

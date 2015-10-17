@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Blocks\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
@@ -7,7 +8,6 @@ use TypiCMS\Modules\Core\Services\Cache\CacheInterface;
 
 class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
 {
-
     public function __construct(BlockInterface $repo, CacheInterface $cache)
     {
         $this->repo = $repo;
@@ -15,15 +15,16 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
     }
 
     /**
-     * Get all models
+     * Get all models.
      *
-     * @param  boolean  $all  Show published or all
-     * @param  array    $with Eager load related models
+     * @param bool  $all  Show published or all
+     * @param array $with Eager load related models
+     *
      * @return Collection
      */
-    public function all(array $with = array(), $all = false)
+    public function all(array $with = [], $all = false)
     {
-        $cacheKey = md5(config('app.locale') . 'all' . $all . implode('.', $with));
+        $cacheKey = md5(config('app.locale').'all'.$all.implode('.', $with));
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
@@ -39,15 +40,16 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
     }
 
     /**
-     * Get the content of a block
+     * Get the content of a block.
      *
-     * @param  string $name unique name of the block
-     * @param  array  $with linked
-     * @return string       html
+     * @param string $name unique name of the block
+     * @param array  $with linked
+     *
+     * @return string html
      */
-    public function render($name = null, array $with = array('translations'))
+    public function render($name = null, array $with = ['translations'])
     {
-        $cacheKey = md5(config('app.locale') . 'render' . $name . implode('.', $with));
+        $cacheKey = md5(config('app.locale').'render'.$name.implode('.', $with));
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
@@ -63,16 +65,18 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
     }
 
     /**
-     * Get the content of a block
+     * Get the content of a block.
      *
      * @deprecated
-     * @param  string $name unique name of the block
-     * @param  array  $with linked
-     * @return string       html
+     *
+     * @param string $name unique name of the block
+     * @param array  $with linked
+     *
+     * @return string html
      */
-    public function build($name = null, array $with = array('translations'))
+    public function build($name = null, array $with = ['translations'])
     {
-        $cacheKey = md5(config('app.locale') . 'build' . $name . implode('.', $with));
+        $cacheKey = md5(config('app.locale').'build'.$name.implode('.', $with));
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
