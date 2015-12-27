@@ -73,19 +73,4 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
 
         return $block->present()->body;
     }
-
-    /**
-     * Get the content of a block.
-     *
-     * @deprecated
-     *
-     * @param string $name unique name of the block
-     * @param array  $with linked
-     *
-     * @return string html
-     */
-    public function build($name = null, array $with = ['translations'])
-    {
-        return $this->render($name, $with);
-    }
 }

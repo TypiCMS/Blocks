@@ -63,31 +63,4 @@ class CacheDecorator extends CacheAbstractDecorator implements BlockInterface
 
         return $model;
     }
-
-    /**
-     * Get the content of a block.
-     *
-     * @deprecated
-     *
-     * @param string $name unique name of the block
-     * @param array  $with linked
-     *
-     * @return string html
-     */
-    public function build($name = null, array $with = ['translations'])
-    {
-        $cacheKey = md5(config('app.locale').'build'.$name.implode('.', $with));
-
-        if ($this->cache->has($cacheKey)) {
-            return $this->cache->get($cacheKey);
-        }
-
-        // Item not cached, retrieve it
-        $model = $this->repo->build($name, $with);
-
-        // Store in cache for next request
-        $this->cache->put($cacheKey, $model);
-
-        return $model;
-    }
 }
