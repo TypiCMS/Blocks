@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
 use TypiCMS\Modules\Blocks\Http\Requests\FormRequest;
+use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Blocks\Repositories\BlockInterface;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
@@ -16,29 +17,29 @@ class AdminController extends BaseAdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param FormRequest $request
+     * @param \TypiCMS\Modules\Blocks\Http\Requests\FormRequest $request
      *
-     * @return Redirect
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(FormRequest $request)
     {
-        $model = $this->repository->create($request->all());
+        $block = $this->repository->create($request->all());
 
-        return $this->redirect($request, $model);
+        return $this->redirect($request, $block);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  $model
-     * @param FormRequest $request
+     * @param \TypiCMS\Modules\Blocks\Models\Block              $block
+     * @param \TypiCMS\Modules\Blocks\Http\Requests\FormRequest $request
      *
-     * @return Redirect
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($model, FormRequest $request)
+    public function update(Block $block, FormRequest $request)
     {
         $this->repository->update($request->all());
 
-        return $this->redirect($request, $model);
+        return $this->redirect($request, $block);
     }
 }
