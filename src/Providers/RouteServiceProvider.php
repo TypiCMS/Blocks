@@ -17,20 +17,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'TypiCMS\Modules\Blocks\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
-     */
-    public function boot(Router $router)
-    {
-        parent::boot($router);
-
-        $router->model('blocks', 'TypiCMS\Modules\Blocks\Models\Block');
-    }
-
-    /**
      * Define the routes for the application.
      *
      * @param \Illuminate\Routing\Router $router
@@ -43,12 +29,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->resource('admin/blocks', 'AdminController');
+            $router->get('admin/blocks', ['as' => 'admin.blocks.index', 'uses' => 'AdminController@index']);
+            $router->get('admin/blocks/create', ['as' => 'admin.blocks.create', 'uses' => 'AdminController@create']);
+            $router->get('admin/blocks/{block}/edit', ['as' => 'admin.blocks.edit', 'uses' => 'AdminController@edit']);
+            $router->post('admin/blocks', ['as' => 'admin.blocks.store', 'uses' => 'AdminController@store']);
+            $router->put('admin/blocks/{block}', ['as' => 'admin.blocks.update', 'uses' => 'AdminController@update']);
 
             /*
              * API routes
              */
-            $router->resource('api/blocks', 'ApiController');
+            $router->get('api/blocks', ['as' => 'api.blocks.index', 'uses' => 'ApiController@index']);
+            $router->put('api/blocks/{block}', ['as' => 'api.blocks.update', 'uses' => 'ApiController@update']);
+            $router->delete('api/blocks/{block}', ['as' => 'api.blocks.destroy', 'uses' => 'ApiController@destroy']);
         });
     }
 }
