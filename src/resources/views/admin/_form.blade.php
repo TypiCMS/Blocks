@@ -9,18 +9,8 @@
 
 {!! BootForm::text(trans('validation.attributes.name'), 'name') !!}
 
-@include('core::admin._tabs-lang-form', ['target' => 'content'])
-
-<div class="tab-content">
-
-@foreach ($locales as $lang)
-
-    <div class="tab-pane fade @if($locale == $lang)in active @endif" id="content-{{ $lang }}">
-        <input type="hidden" name="{{ $lang }}[status]" value="0">
-        {!! BootForm::checkbox(trans('validation.attributes.online'), $lang.'[status]') !!}
-        {!! BootForm::textarea(trans('validation.attributes.body'), $lang.'[body]')->addClass('ckeditor') !!}
-    </div>
-
-@endforeach
+{!! TranslatableBootForm::hidden('status')->value(0) !!}
+{!! TranslatableBootForm::checkbox(trans('validation.attributes.online'), 'status') !!}
+{!! TranslatableBootForm::textarea(trans('validation.attributes.body'), 'body')->addClass('ckeditor') !!}
 
 </div>
