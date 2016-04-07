@@ -16,7 +16,7 @@ class SidebarViewComposer
                 $item->icon = config('typicms.blocks.sidebar.icon', 'icon fa fa-fw fa-list-alt');
                 $item->weight = config('typicms.blocks.sidebar.weight');
                 $item->route('admin::index-blocks');
-                $item->append('admin::create-blocks');
+                $item->append('admin::create-block');
                 $item->authorize(
                     Gate::allows('index-blocks')
                 );

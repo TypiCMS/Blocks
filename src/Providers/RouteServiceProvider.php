@@ -30,17 +30,17 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->get('admin/blocks', 'AdminController@index')->name('admin::index-blocks');
-            $router->get('admin/blocks/create', 'AdminController@create')->name('admin::create-blocks');
-            $router->get('admin/blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-blocks');
-            $router->post('admin/blocks', 'AdminController@store')->name('admin::store-blocks');
-            $router->put('admin/blocks/{block}', 'AdminController@update')->name('admin::update-blocks');
+            $router->get('admin/blocks/create', 'AdminController@create')->name('admin::create-block');
+            $router->get('admin/blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block');
+            $router->post('admin/blocks', 'AdminController@store')->name('admin::store-block');
+            $router->put('admin/blocks/{block}', 'AdminController@update')->name('admin::update-block');
 
             /*
              * API routes
              */
             $router->get('api/blocks', 'ApiController@index')->name('api::index-blocks');
-            $router->put('api/blocks/{block}', 'ApiController@update')->name('api::update-blocks');
-            $router->delete('api/blocks/{block}', 'ApiController@destroy')->name('api::destroy-blocks');
+            $router->put('api/blocks/{block}', 'ApiController@update')->name('api::update-block');
+            $router->delete('api/blocks/{block}', 'ApiController@destroy')->name('api::destroy-block');
         });
     }
 }
