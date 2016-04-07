@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Blocks\Composers;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
 
@@ -17,7 +18,7 @@ class SidebarViewComposer
                 $item->route('admin::index-blocks');
                 $item->append('admin::create-blocks');
                 $item->authorize(
-                    auth()->user()->can('index-blocks')
+                    Gate::allows('index-blocks')
                 );
             });
         });
