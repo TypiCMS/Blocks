@@ -2,57 +2,27 @@
 
 namespace TypiCMS\Modules\Blocks\Models;
 
-use Dimsav\Translatable\Translatable;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
 
 class Block extends Base
 {
+    use HasTranslations;
     use Historable;
     use PresentableTrait;
-    use Translatable;
 
     protected $presenter = 'TypiCMS\Modules\Blocks\Presenters\BlockPresenter';
 
-    protected $fillable = [
-        'name',
-        // Translatable columns
+    protected $guarded = ['id'];
+
+    public $translatable = [
         'status',
         'body',
     ];
 
-    /**
-     * Translatable model configs.
-     *
-     * @var array
-     */
-    public $translatedAttributes = [
-        'status',
-        'body',
-    ];
-
-    protected $appends = ['status', 'body_cleaned'];
-
-    /**
-     * Append status attribute from translation table.
-     *
-     * @return string
-     */
-    public function getStatusAttribute()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Append title attribute from translation table.
-     *
-     * @return string title
-     */
-    public function getTitleAttribute()
-    {
-        return $this->title;
-    }
+    protected $appends = ['body_cleaned'];
 
     /**
      * Append thumb attribute.

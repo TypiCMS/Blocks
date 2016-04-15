@@ -16,19 +16,9 @@ class CreateBlocksTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
+            $table->json('status');
+            $table->json('body');
             $table->timestamps();
-        });
-
-        Schema::create('block_translations', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->integer('block_id')->unsigned();
-            $table->string('locale');
-            $table->boolean('status')->default(0);
-            $table->text('body');
-            $table->timestamps();
-            $table->unique(['block_id', 'locale']);
-            $table->foreign('block_id')->references('id')->on('blocks')->onDelete('cascade');
         });
     }
 
@@ -39,7 +29,6 @@ class CreateBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('block_translations');
         Schema::drop('blocks');
     }
 }
