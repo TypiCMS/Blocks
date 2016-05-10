@@ -8,7 +8,7 @@ class CreateBlocksTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return null
      */
     public function up()
     {
@@ -25,7 +25,7 @@ class CreateBlocksTable extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return null
      */
     public function down()
     {
