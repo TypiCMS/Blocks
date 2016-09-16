@@ -31,7 +31,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
             $query->whereHas(
                 'translations',
                 function (Builder $query) {
-                    $query->where('status', 1);
+                    $query->where('status', '1');
                     $query->where('locale', config('app.locale'));
                 }
             );
@@ -61,7 +61,7 @@ class EloquentBlock extends RepositoriesAbstract implements BlockInterface
             ->whereHas(
                 'translations',
                 function (Builder $query) {
-                    $query->where('status', 1);
+                    $query->where('status', '1');
                     $query->where('locale', config('app.locale'));
                 }
             )
