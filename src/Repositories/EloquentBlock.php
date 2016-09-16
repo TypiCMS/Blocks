@@ -5,6 +5,7 @@ namespace TypiCMS\Modules\Blocks\Repositories;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use TypiCMS\Modules\Blocks\Models\Block;
+use TypiCMS\Modules\Core\EloquentRepository;
 
 class EloquentBlock extends EloquentRepository
 {
