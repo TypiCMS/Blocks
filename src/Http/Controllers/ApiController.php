@@ -4,7 +4,7 @@ namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
 use Illuminate\Support\Facades\Request;
 use TypiCMS\Modules\Blocks\Models\Block;
-use TypiCMS\Modules\Blocks\Repositories\BlockInterface as Repository;
+use TypiCMS\Modules\Blocks\Repositories\EloquentBlock as Repository;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 
 class ApiController extends BaseApiController

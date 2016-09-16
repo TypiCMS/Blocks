@@ -6,9 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Blocks\Models\Block;
-use TypiCMS\Modules\Blocks\Repositories\CacheDecorator;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
-use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -51,14 +49,6 @@ class ModuleProvider extends ServiceProvider
          */
         $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Blocks\Composers\SidebarViewComposer');
 
-        $app->bind('TypiCMS\Modules\Blocks\Repositories\BlockInterface', function (Application $app) {
-            $repository = new EloquentBlock(new Block());
-            if (!config('typicms.cache')) {
-                return $repository;
-            }
-            $laravelCache = new LaravelCache($app['cache'], 'blocks', 10);
-
-            return new CacheDecorator($repository, $laravelCache);
-        });
+        $app->bind('Blocks', EloquentBlock::class);
     }
 }

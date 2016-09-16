@@ -4,12 +4,12 @@ namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
 use TypiCMS\Modules\Blocks\Http\Requests\FormRequest;
 use TypiCMS\Modules\Blocks\Models\Block;
-use TypiCMS\Modules\Blocks\Repositories\BlockInterface;
+use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(BlockInterface $block)
+    public function __construct(EloquentBlock $block)
     {
         parent::__construct($block);
     }

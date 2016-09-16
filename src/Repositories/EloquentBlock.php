@@ -4,15 +4,13 @@ namespace TypiCMS\Modules\Blocks\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
+use TypiCMS\Modules\Blocks\Models\Block;
 
-class EloquentBlock extends RepositoriesAbstract implements BlockInterface
+class EloquentBlock extends EloquentRepository
 {
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
+    protected $repositoryId = 'blocks';
+
+    protected $model = Block::class;
 
     /**
      * Get all models.
