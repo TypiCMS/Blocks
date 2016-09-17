@@ -3,9 +3,7 @@
 namespace TypiCMS\Modules\Blocks\Providers;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 
 class ModuleProvider extends ServiceProvider
