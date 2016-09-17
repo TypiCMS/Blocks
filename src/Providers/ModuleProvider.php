@@ -31,7 +31,7 @@ class ModuleProvider extends ServiceProvider
 
         AliasLoader::getInstance()->alias(
             'Blocks',
-            'TypiCMS\Modules\Slides\Facades\Blocks'
+            'TypiCMS\Modules\Blocks\Facades\Blocks'
         );
     }
 
