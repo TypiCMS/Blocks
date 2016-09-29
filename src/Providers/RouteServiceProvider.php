@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
                 $router->get('blocks', 'AdminController@index')->name('admin::index-blocks');
                 $router->get('blocks/create', 'AdminController@create')->name('admin::create-block');
                 $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block');
@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * API routes
              */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
                 $router->get('blocks', 'ApiController@index')->name('api::index-blocks');
                 $router->put('blocks/{block}', 'ApiController@update')->name('api::update-block');
                 $router->delete('blocks/{block}', 'ApiController@destroy')->name('api::destroy-block');
