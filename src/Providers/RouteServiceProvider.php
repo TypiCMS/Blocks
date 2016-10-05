@@ -34,15 +34,8 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block');
                 $router->post('blocks', 'AdminController@store')->name('admin::store-block');
                 $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block');
-            });
-
-            /*
-             * API routes
-             */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
-                $router->get('blocks', 'ApiController@index')->name('api::index-blocks');
-                $router->put('blocks/{block}', 'ApiController@update')->name('api::update-block');
-                $router->delete('blocks/{block}', 'ApiController@destroy')->name('api::destroy-block');
+                $router->patch('blocks/{block}', 'AdminController@ajaxUpdate');
+                $router->delete('blocks/{block}', 'AdminController@destroy')->name('admin::destroy-block');
             });
         });
     }
