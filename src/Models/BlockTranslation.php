@@ -6,6 +6,11 @@ use TypiCMS\Modules\Core\Models\BaseTranslation;
 
 class BlockTranslation extends BaseTranslation
 {
+    protected $fillable = [
+        'status',
+        'body',
+    ];
+
     /**
      * get the parent model.
      */

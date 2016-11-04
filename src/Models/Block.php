@@ -17,9 +17,6 @@ class Block extends Base
 
     protected $fillable = [
         'name',
-        // Translatable columns
-        'status',
-        'body',
     ];
 
     /**
@@ -39,9 +36,9 @@ class Block extends Base
      *
      * @return string
      */
-    public function getStatusAttribute()
+    public function getStatusAttribute($value)
     {
-        return $this->status;
+        return $value;
     }
 
     /**
@@ -49,9 +46,9 @@ class Block extends Base
      *
      * @return string title
      */
-    public function getTitleAttribute()
+    public function getTitleAttribute($value)
     {
-        return $this->title;
+        return $value;
     }
 
     /**
