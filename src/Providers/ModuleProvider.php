@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Blocks\Providers;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 
@@ -31,6 +32,10 @@ class ModuleProvider extends ServiceProvider
             'Blocks',
             'TypiCMS\Modules\Blocks\Facades\Blocks'
         );
+
+        Blade::directive('block', function ($name) {
+            return "<?php echo Blocks::render($name) ?>";
+        });
     }
 
     public function register()
