@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name'   => 'Blocks',
+    'name' => 'Blocks',
     'blocks' => 'block|blocks',
-    'New'    => 'New block',
-    'Edit'   => 'Edit block',
-    'Back'   => 'Back to blocks',
+    'New' => 'New block',
+    'Edit' => 'Edit block',
+    'Back' => 'Back to blocks',
 ];
