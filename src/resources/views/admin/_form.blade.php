@@ -6,10 +6,10 @@
 
 {!! BootForm::hidden('id') !!}
 
-{!! BootForm::text(trans('validation.attributes.name'), 'name') !!}
+{!! BootForm::text(__('validation.attributes.name'), 'name') !!}
 
 {!! TranslatableBootForm::hidden('status')->value(0) !!}
-{!! TranslatableBootForm::checkbox(trans('validation.attributes.online'), 'status') !!}
-{!! TranslatableBootForm::textarea(trans('validation.attributes.body'), 'body')->addClass('ckeditor') !!}
+{!! TranslatableBootForm::checkbox(__('validation.attributes.online'), 'status') !!}
+{!! TranslatableBootForm::textarea(__('validation.attributes.body'), 'body')->addClass('ckeditor') !!}
 
 </div>
