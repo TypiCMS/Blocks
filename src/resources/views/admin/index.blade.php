@@ -28,10 +28,10 @@
                 <tr>
                     <td colspan="3"></td>
                     <td>
-                        <input st-search="name" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
+                        <input st-search="name" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                     <td>
-                        <input st-search="body" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
+                        <input st-search="body" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                 </tr>
             </thead>
