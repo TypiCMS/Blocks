@@ -2,7 +2,7 @@
 
 @section('title', __('blocks::global.New'))
 
-@section('main')
+@section('content')
 
     @include('core::admin._button-back', ['module' => 'blocks'])
     <h1>
