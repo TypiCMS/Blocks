@@ -21,9 +21,9 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="status" class="status st-sort">Status</th>
-                    <th st-sort="name" st-sort-default="true" class="name st-sort">Name</th>
-                    <th st-sort="body" class="body st-sort">Content</th>
+                    <th st-sort="status" class="status st-sort">{{ __('Status') }}</th>
+                    <th st-sort="name" st-sort-default="true" class="name st-sort">{{ __('Name') }}</th>
+                    <th st-sort="body" class="body st-sort">{{ __('Content') }}</th>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
