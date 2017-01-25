@@ -5,6 +5,8 @@ namespace TypiCMS\Modules\Blocks\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use TypiCMS\Modules\Blocks\Composers\SidebarViewComposer;
+use TypiCMS\Modules\Blocks\Facades\Blocks;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 
 class ModuleProvider extends ServiceProvider
@@ -28,10 +30,7 @@ class ModuleProvider extends ServiceProvider
             __DIR__.'/../database' => base_path('database'),
         ], 'migrations');
 
-        AliasLoader::getInstance()->alias(
-            'Blocks',
-            'TypiCMS\Modules\Blocks\Facades\Blocks'
-        );
+        AliasLoader::getInstance()->alias('Blocks', Blocks::class);
 
         Blade::directive('block', function ($name) {
             return "<?php echo Blocks::render($name) ?>";
@@ -45,12 +44,12 @@ class ModuleProvider extends ServiceProvider
         /*
          * Register route service provider
          */
-        $app->register('TypiCMS\Modules\Blocks\Providers\RouteServiceProvider');
+        $app->register(RouteServiceProvider::class);
 
         /*
          * Sidebar view composer
          */
-        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Blocks\Composers\SidebarViewComposer');
+        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
 
         $app->bind('Blocks', EloquentBlock::class);
     }
