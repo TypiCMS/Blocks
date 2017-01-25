@@ -41,6 +41,6 @@ class Block extends Base
      */
     public function getBodyCleanedAttribute()
     {
-        return strip_tags(html_entity_decode($this->body));
+        return trim(strip_tags(html_entity_decode($this->attributes['body'])), '"');
     }
 }
