@@ -44,7 +44,7 @@
                     </td>
                     <td typi-btn-status action="toggleStatus(model)" model="model"></td>
                     <td>@{{ model.name }}</td>
-                    <td>@{{ model.body_cleaned }}</td>
+                    <td>@{{ model.body_cleaned | translated }}</td>
                 </tr>
             </tbody>
             <tfoot>
