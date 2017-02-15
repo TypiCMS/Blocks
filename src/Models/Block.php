@@ -22,7 +22,7 @@ class Block extends Base
         'body',
     ];
 
-    protected $appends = ['body_cleaned'];
+    protected $appends = ['body_cleaned_translated'];
 
     /**
      * Append thumb attribute.
@@ -35,12 +35,14 @@ class Block extends Base
     }
 
     /**
-     * Append Body attribute from translation table.
+     * Append body_cleaned_translated attribute.
      *
      * @return string
      */
-    public function getBodyCleanedAttribute()
+    public function getBodyCleanedTranslatedAttribute()
     {
-        return json_decode(trim(strip_tags(html_entity_decode($this->attributes['body'])), '"'));
+        $locale = config('app.locale');
+        $body = $this->translate('body', config('typicms.content_locale', $locale));
+        return trim(strip_tags(html_entity_decode($body)), '"');
     }
 }

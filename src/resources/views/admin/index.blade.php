@@ -23,7 +23,7 @@
                     <th class="edit"></th>
                     <th st-sort="status" class="status st-sort">{{ __('Status') }}</th>
                     <th st-sort="name" st-sort-default="true" class="name st-sort">{{ __('Name') }}</th>
-                    <th st-sort="body" class="body st-sort">{{ __('Content') }}</th>
+                    <th st-sort="body_cleaned_translated" class="body_cleaned_translated st-sort">{{ __('Content') }}</th>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
@@ -31,7 +31,7 @@
                         <input st-search="name" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                     <td>
-                        <input st-search="body" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
+                        <input st-search="body_cleaned_translated" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                 </tr>
             </thead>
@@ -44,7 +44,7 @@
                     </td>
                     <td typi-btn-status action="toggleStatus(model)" model="model"></td>
                     <td>@{{ model.name }}</td>
-                    <td>@{{ model.body_cleaned | translated }}</td>
+                    <td>@{{ model.body_cleaned_translated }}</td>
                 </tr>
             </tbody>
             <tfoot>
