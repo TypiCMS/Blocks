@@ -43,6 +43,7 @@ class Block extends Base
     {
         $locale = config('app.locale');
         $body = $this->translate('body', config('typicms.content_locale', $locale));
+
         return trim(strip_tags(html_entity_decode($body)), '"');
     }
 }
