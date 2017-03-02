@@ -34,8 +34,8 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block');
                 $router->post('blocks', 'AdminController@store')->name('admin::store-block');
                 $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block');
-                $router->patch('blocks/{block}', 'AdminController@ajaxUpdate');
-                $router->delete('blocks/{block}', 'AdminController@destroy')->name('admin::destroy-block');
+                $router->patch('blocks/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-block');
+                $router->delete('blocks/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-block');
             });
         });
     }
