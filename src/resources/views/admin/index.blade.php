@@ -24,7 +24,7 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="status" class="status st-sort">{{ __('Status') }}</th>
+                    <th st-sort="status_translated" class="status_translated st-sort">{{ __('Status') }}</th>
                     <th st-sort="name" st-sort-default="true" class="name st-sort">{{ __('Name') }}</th>
                     <th st-sort="body_cleaned_translated" class="body_cleaned_translated st-sort">{{ __('Content') }}</th>
                 </tr>
