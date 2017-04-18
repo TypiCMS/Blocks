@@ -11,7 +11,7 @@ class SidebarViewComposer
 {
     public function compose(View $view)
     {
-        $view->sidebar->group(__('global.menus.content'), function (SidebarGroup $group) {
+        $view->sidebar->group(__('Content'), function (SidebarGroup $group) {
             $group->addItem(__('blocks::global.name'), function (SidebarItem $item) {
                 $item->id = 'blocks';
                 $item->icon = config('typicms.blocks.sidebar.icon', 'icon fa fa-fw fa-list-alt');
