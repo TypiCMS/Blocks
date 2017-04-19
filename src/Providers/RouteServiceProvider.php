@@ -29,13 +29,13 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
-                $router->get('blocks', 'AdminController@index')->name('admin::index-blocks');
-                $router->get('blocks/create', 'AdminController@create')->name('admin::create-block');
-                $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block');
-                $router->post('blocks', 'AdminController@store')->name('admin::store-block');
-                $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block');
-                $router->patch('blocks/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-block-ajax');
-                $router->delete('blocks/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-block');
+                $router->get('blocks', 'AdminController@index')->name('admin::index-blocks')->middleware('can:see-all-blocks');
+                $router->get('blocks/create', 'AdminController@create')->name('admin::create-block')->middleware('can:create-block');
+                $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block')->middleware('can:update-block');
+                $router->post('blocks', 'AdminController@store')->name('admin::store-block')->middleware('can:create-block');
+                $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block')->middleware('can:update-block');
+                $router->patch('blocks/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-block-ajax')->middleware('can:update-block');
+                $router->delete('blocks/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-block')->middleware('can:delete-block');
             });
         });
     }

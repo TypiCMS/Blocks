@@ -2,9 +2,9 @@
 
 return [
     'blocks' => [
-        'index-blocks' => 'View list',
+        'see-all-blocks' => 'View list',
         'create-block' => 'Create',
-        'edit-block' => 'Edit',
-        'destroy-block' => 'Destroy',
+        'update-block' => 'Edit',
+        'delete-block' => 'Delete',
     ],
 ];
