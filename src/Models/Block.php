@@ -25,16 +25,6 @@ class Block extends Base
     protected $appends = ['body_cleaned_translated', 'status_translated'];
 
     /**
-     * Append thumb attribute.
-     *
-     * @return string
-     */
-    public function getThumbAttribute()
-    {
-        return $this->present()->thumbSrc(null, 22);
-    }
-
-    /**
      * Append body_cleaned_translated attribute.
      *
      * @return string
