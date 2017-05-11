@@ -7,7 +7,7 @@
 
 {!! BootForm::hidden('id') !!}
 
-{!! BootForm::text(__('Name'), 'name') !!}
+{!! BootForm::text(__('Name'), 'name')->required() !!}
 
 {!! TranslatableBootForm::hidden('status')->value(0) !!}
 {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
