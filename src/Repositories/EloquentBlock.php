@@ -21,12 +21,13 @@ class EloquentBlock extends EloquentRepository
      */
     public function render($name = null)
     {
-        $block = $this->where('name', $name)
-            ->where(column('status'), '1')
-            ->first();
+        return $this->executeCallback(get_called_class(), __FUNCTION__, func_get_args(), function () use ($name) {
+            $block = $this->prepareQuery($this->createModel())
+                ->where('name', $name)
+                ->published()
+                ->first();
 
-        if ($block) {
-            return $block->present()->body;
-        }
+            return $block ? $block->present()->body : '';
+        });
     }
 }
