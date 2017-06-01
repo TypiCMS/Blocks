@@ -1,6 +1,6 @@
 @extends('core::admin.master')
 
-@section('title', __('blocks::global.name'))
+@section('title', __('Content blocks'))
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
     @include('core::admin._button-create', ['module' => 'blocks'])
 
-    <h1>@lang('blocks::global.name')</h1>
+    <h1>@lang('Content blocks')</h1>
 
     <div class="btn-toolbar">
         @include('core::admin._button-select')
@@ -30,10 +30,10 @@
                 <tr>
                     <td colspan="3"></td>
                     <td>
-                        <input st-search="name" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
+                        <input st-search="name" class="form-control input-sm" placeholder="@lang('Filter')…" type="text">
                     </td>
                     <td>
-                        <input st-search="body_cleaned_translated" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
+                        <input st-search="body_cleaned_translated" class="form-control input-sm" placeholder="@lang('Filter')…" type="text">
                     </td>
                 </tr>
             </thead>
