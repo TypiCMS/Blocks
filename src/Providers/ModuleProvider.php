@@ -35,6 +35,11 @@ class ModuleProvider extends ServiceProvider
         Blade::directive('block', function ($name) {
             return "<?php echo Blocks::render($name) ?>";
         });
+
+        /*
+         * Sidebar view composer
+         */
+        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
     }
 
     public function register()
@@ -45,11 +50,6 @@ class ModuleProvider extends ServiceProvider
          * Register route service provider
          */
         $app->register(RouteServiceProvider::class);
-
-        /*
-         * Sidebar view composer
-         */
-        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
 
         $app->bind('Blocks', EloquentBlock::class);
     }
