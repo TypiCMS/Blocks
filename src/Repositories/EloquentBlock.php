@@ -20,7 +20,9 @@ class EloquentBlock extends EloquentRepository
      */
     public function render($name = null)
     {
-        return $this->executeCallback(get_called_class(), __FUNCTION__, func_get_args(), function () use ($name) {
+        $args = func_get_args();
+        $args[] = config('app.locale');
+        return $this->executeCallback(get_called_class(), __FUNCTION__, $args, function () use ($name) {
             $block = $this->prepareQuery($this->createModel())
                 ->where('name', $name)
                 ->published()
