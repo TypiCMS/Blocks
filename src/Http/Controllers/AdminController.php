@@ -4,12 +4,12 @@ namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
 use TypiCMS\Modules\Blocks\Http\Requests\FormRequest;
 use TypiCMS\Modules\Blocks\Models\Block;
-use TypiCMS\Modules\Blocks\Repositories\BlockInterface;
+use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(BlockInterface $block)
+    public function __construct(EloquentBlock $block)
     {
         parent::__construct($block);
     }
@@ -21,7 +21,7 @@ class AdminController extends BaseAdminController
      */
     public function index()
     {
-        $models = $this->repository->all([], true);
+        $models = $this->repository->findAll();
         app('JavaScript')->put('models', $models);
 
         return view('blocks::admin.index');
@@ -34,7 +34,7 @@ class AdminController extends BaseAdminController
      */
     public function create()
     {
-        $model = $this->repository->getModel();
+        $model = $this->repository->createModel();
 
         return view('blocks::admin.create')
             ->with(compact('model'));
@@ -77,8 +77,24 @@ class AdminController extends BaseAdminController
      */
     public function update(Block $block, FormRequest $request)
     {
-        $this->repository->update($request->all());
+        $this->repository->update($request->id, $request->all());
 
         return $this->redirect($request, $block);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \TypiCMS\Modules\Blocks\Models\Block $block
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Block $block)
+    {
+        $deleted = $this->repository->delete($block);
+
+        return response()->json([
+            'error' => !$deleted,
+        ]);
     }
 }

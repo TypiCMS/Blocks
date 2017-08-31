@@ -1,12 +1,12 @@
 @extends('core::admin.master')
 
-@section('title', trans('blocks::global.New'))
+@section('title', __('New content block'))
 
-@section('main')
+@section('content')
 
     @include('core::admin._button-back', ['module' => 'blocks'])
     <h1>
-        @lang('blocks::global.New')
+        @lang('New content block')
     </h1>
 
     {!! BootForm::open()->action(route('admin::index-blocks'))->multipart()->role('form') !!}

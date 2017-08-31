@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Blocks\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,28 +20,23 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
+     * @return null
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->group(['namespace' => $this->namespace], function (Router $router) {
+        Route::group(['namespace' => $this->namespace], function (Router $router) {
             /*
              * Admin routes
              */
-            $router->get('admin/blocks', 'AdminController@index')->name('admin::index-blocks');
-            $router->get('admin/blocks/create', 'AdminController@create')->name('admin::create-block');
-            $router->get('admin/blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block');
-            $router->post('admin/blocks', 'AdminController@store')->name('admin::store-block');
-            $router->put('admin/blocks/{block}', 'AdminController@update')->name('admin::update-block');
-
-            /*
-             * API routes
-             */
-            $router->get('api/blocks', 'ApiController@index')->name('api::index-blocks');
-            $router->put('api/blocks/{block}', 'ApiController@update')->name('api::update-block');
-            $router->delete('api/blocks/{block}', 'ApiController@destroy')->name('api::destroy-block');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
+                $router->get('blocks', 'AdminController@index')->name('admin::index-blocks')->middleware('can:see-all-blocks');
+                $router->get('blocks/create', 'AdminController@create')->name('admin::create-block')->middleware('can:create-block');
+                $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block')->middleware('can:update-block');
+                $router->post('blocks', 'AdminController@store')->name('admin::store-block')->middleware('can:create-block');
+                $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block')->middleware('can:update-block');
+                $router->patch('blocks/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-block-ajax')->middleware('can:update-block');
+                $router->delete('blocks/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-block')->middleware('can:delete-block');
+            });
         });
     }
 }

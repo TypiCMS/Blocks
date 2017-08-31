@@ -2,72 +2,50 @@
 
 namespace TypiCMS\Modules\Blocks\Models;
 
-use Dimsav\Translatable\Translatable;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
 
 class Block extends Base
 {
+    use HasTranslations;
     use Historable;
     use PresentableTrait;
-    use Translatable;
 
     protected $presenter = 'TypiCMS\Modules\Blocks\Presenters\BlockPresenter';
 
-    protected $fillable = [
-        'name',
-    ];
+    protected $guarded = ['id', 'exit'];
 
-    /**
-     * Translatable model configs.
-     *
-     * @var array
-     */
-    public $translatedAttributes = [
+    public $translatable = [
         'status',
         'body',
     ];
 
-    protected $appends = ['status', 'body_cleaned'];
+    protected $appends = ['body_cleaned_translated', 'status_translated'];
 
     /**
-     * Append status attribute from translation table.
+     * Append body_cleaned_translated attribute.
      *
      * @return string
      */
-    public function getStatusAttribute($value)
+    public function getBodyCleanedTranslatedAttribute()
     {
-        return $value;
+        $locale = config('app.locale');
+        $body = $this->translate('body', config('typicms.content_locale', $locale));
+
+        return trim(strip_tags(html_entity_decode($body)), '"');
     }
 
     /**
-     * Append title attribute from translation table.
-     *
-     * @return string title
-     */
-    public function getTitleAttribute($value)
-    {
-        return $value;
-    }
-
-    /**
-     * Append thumb attribute.
+     * Append status_translated attribute.
      *
      * @return string
      */
-    public function getThumbAttribute()
+    public function getStatusTranslatedAttribute()
     {
-        return $this->present()->thumbSrc(null, 22);
-    }
+        $locale = config('app.locale');
 
-    /**
-     * Append Body attribute from translation table.
-     *
-     * @return string
-     */
-    public function getBodyCleanedAttribute()
-    {
-        return strip_tags(html_entity_decode($this->body));
+        return $this->translate('status', config('typicms.content_locale', $locale));
     }
 }

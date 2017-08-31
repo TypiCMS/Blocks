@@ -11,16 +11,18 @@ class SidebarViewComposer
 {
     public function compose(View $view)
     {
-        $view->sidebar->group(trans('global.menus.content'), function (SidebarGroup $group) {
-            $group->addItem(trans('blocks::global.name'), function (SidebarItem $item) {
+        if (Gate::denies('see-all-blocks')) {
+            return;
+        }
+        $view->sidebar->group(__('Content'), function (SidebarGroup $group) {
+            $group->id = 'content';
+            $group->weight = 30;
+            $group->addItem(__('Content blocks'), function (SidebarItem $item) {
                 $item->id = 'blocks';
                 $item->icon = config('typicms.blocks.sidebar.icon', 'icon fa fa-fw fa-list-alt');
                 $item->weight = config('typicms.blocks.sidebar.weight');
                 $item->route('admin::index-blocks');
                 $item->append('admin::create-block');
-                $item->authorize(
-                    Gate::allows('index-blocks')
-                );
             });
         });
     }

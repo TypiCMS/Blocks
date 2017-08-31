@@ -2,75 +2,34 @@
 
 namespace TypiCMS\Modules\Blocks\Repositories;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
+use TypiCMS\Modules\Blocks\Models\Block;
+use TypiCMS\Modules\Core\Repositories\EloquentRepository;
 
-class EloquentBlock extends RepositoriesAbstract implements BlockInterface
+class EloquentBlock extends EloquentRepository
 {
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
+    protected $repositoryId = 'blocks';
 
-    /**
-     * Get all models.
-     *
-     * @param bool  $all  Show published or all
-     * @param array $with Eager load related models
-     *
-     * @return Collection
-     */
-    public function all(array $with = ['translations'], $all = false)
-    {
-        $query = $this->make($with);
-
-        if (!$all) {
-            // take only translated items that are online
-            $query->whereHas(
-                'translations',
-                function (Builder $query) {
-                    $query->where('status', 1);
-                    $query->where('locale', config('app.locale'));
-                }
-            );
-        }
-
-        // Query ORDER BY
-        $query->order();
-
-        // Get
-        $models = $query->get();
-
-        return $models;
-    }
+    protected $model = Block::class;
 
     /**
      * Get the content of a block.
      *
      * @param string $name unique name of the block
-     * @param array  $with linked
      *
      * @return string html
      */
-    public function render($name = null, array $with = ['translations'])
+    public function render($name = null)
     {
-        $block = $this->make($with)
-            ->where('name', $name)
-            ->whereHas(
-                'translations',
-                function (Builder $query) {
-                    $query->where('status', 1);
-                    $query->where('locale', config('app.locale'));
-                }
-            )
-            ->first();
+        $args = func_get_args();
+        $args[] = config('app.locale');
 
-        if (!$block) {
-            return;
-        }
+        return $this->executeCallback(get_called_class(), __FUNCTION__, $args, function () use ($name) {
+            $block = $this->prepareQuery($this->createModel())
+                ->where('name', $name)
+                ->published()
+                ->first();
 
-        return $block->present()->body;
+            return $block ? $block->present()->body : '';
+        });
     }
 }

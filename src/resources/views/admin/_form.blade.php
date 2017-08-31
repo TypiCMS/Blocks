@@ -1,15 +1,16 @@
-@section('js')
+@push('js')
     <script src="{{ asset('components/ckeditor/ckeditor.js') }}"></script>
-@endsection
+@endpush
 
-@include('core::admin._buttons-form')
+@component('core::admin._buttons-form', ['model' => $model])
+@endcomponent
 
 {!! BootForm::hidden('id') !!}
 
-{!! BootForm::text(trans('validation.attributes.name'), 'name') !!}
+{!! BootForm::text(__('Name'), 'name')->required() !!}
 
 {!! TranslatableBootForm::hidden('status')->value(0) !!}
-{!! TranslatableBootForm::checkbox(trans('validation.attributes.online'), 'status') !!}
-{!! TranslatableBootForm::textarea(trans('validation.attributes.body'), 'body')->addClass('ckeditor') !!}
+{!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+{!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor') !!}
 
 </div>
