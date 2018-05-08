@@ -9,8 +9,10 @@
 
 {!! BootForm::text(__('Name'), 'name')->required() !!}
 
-{!! TranslatableBootForm::hidden('status')->value(0) !!}
-{!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+<div class="form-group">
+    {!! TranslatableBootForm::hidden('status')->value(0) !!}
+    {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+</div>
 {!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor') !!}
 
 </div>
