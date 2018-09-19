@@ -4,9 +4,9 @@ namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
-use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
+use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 
 class ApiController extends BaseApiController
 {
