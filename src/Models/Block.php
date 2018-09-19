@@ -22,7 +22,7 @@ class Block extends Base
         'body',
     ];
 
-    protected $appends = ['body_cleaned_translated', 'status_translated'];
+    protected $appends = ['body_cleaned_translated'];
 
     /**
      * Append body_cleaned_translated attribute.
@@ -35,17 +35,5 @@ class Block extends Base
         $body = $this->translate('body', config('typicms.content_locale', $locale));
 
         return trim(strip_tags(html_entity_decode($body)), '"');
-    }
-
-    /**
-     * Append status_translated attribute.
-     *
-     * @return string
-     */
-    public function getStatusTranslatedAttribute()
-    {
-        $locale = config('app.locale');
-
-        return $this->translate('status', config('typicms.content_locale', $locale));
     }
 }

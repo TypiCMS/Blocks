@@ -34,8 +34,17 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block')->middleware('can:update-block');
                 $router->post('blocks', 'AdminController@store')->name('admin::store-block')->middleware('can:create-block');
                 $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block')->middleware('can:update-block');
-                $router->patch('blocks/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-block-ajax')->middleware('can:update-block');
-                $router->delete('blocks/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-block')->middleware('can:delete-block');
+            });
+
+            /*
+             * API routes
+             */
+            $router->middleware('api')->prefix('api')->group(function (Router $router) {
+                $router->middleware('auth:api')->group(function (Router $router) {
+                    $router->get('blocks', 'ApiController@index')->name('api::index-blocks')->middleware('can:see-all-blocks');
+                    $router->patch('blocks/{block}', 'ApiController@updatePartial')->name('api::update-block-ajax')->middleware('can:update-block');
+                    $router->delete('blocks/{block}', 'ApiController@destroy')->name('api::destroy-block')->middleware('can:delete-block');
+                });
             });
         });
     }
