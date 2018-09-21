@@ -41,9 +41,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('blocks', 'ApiController@index')->name('api::index-blocks')->middleware('can:see-all-blocks');
-                    $router->patch('blocks/{block}', 'ApiController@updatePartial')->name('api::update-block-ajax')->middleware('can:update-block');
-                    $router->delete('blocks/{block}', 'ApiController@destroy')->name('api::destroy-block')->middleware('can:delete-block');
+                    $router->get('blocks', 'ApiController@index')->middleware('can:see-all-blocks');
+                    $router->patch('blocks/{block}', 'ApiController@updatePartial')->middleware('can:update-block');
+                    $router->delete('blocks/{block}', 'ApiController@destroy')->middleware('can:delete-block');
                 });
             });
         });
