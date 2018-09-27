@@ -21,19 +21,4 @@ class Block extends Base
         'status',
         'body',
     ];
-
-    protected $appends = ['body_cleaned_translated'];
-
-    /**
-     * Append body_cleaned_translated attribute.
-     *
-     * @return string
-     */
-    public function getBodyCleanedTranslatedAttribute()
-    {
-        $locale = config('app.locale');
-        $body = $this->translate('body', config('typicms.content_locale', $locale));
-
-        return trim(strip_tags(html_entity_decode($body)), '"');
-    }
 }

@@ -23,7 +23,7 @@
         <item-list-column-header name="edit"></item-list-column-header>
         <item-list-column-header name="status_translated" sortable :sort-array="sortArray" :label="$t('Status')"></item-list-column-header>
         <item-list-column-header name="name" sortable :sort-array="sortArray" :label="$t('Name')"></item-list-column-header>
-        <item-list-column-header name="body_cleaned_translated" :label="$t('Content')"></item-list-column-header>
+        <item-list-column-header name="body_translated" :label="$t('Content')"></item-list-column-header>
     </template>
 
     <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
@@ -31,7 +31,7 @@
         <td>@include('core::admin._button-edit', ['module' => 'blocks'])</td>
         <td><item-list-status-button :model="model"></item-list-status-button></td>
         <td>@{{ model.name }}</td>
-        <td>@{{ model.body_cleaned_translated }}</td>
+        <td>@{{ model.body_translated }}</td>
     </template>
 
 </item-list>
