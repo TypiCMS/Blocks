@@ -17,11 +17,20 @@ class ApiController extends BaseApiController
 
     public function index(Request $request)
     {
-        $models = QueryBuilder::for(Block::class)
+        $data = QueryBuilder::for(Block::class)
             ->translated($request->input('translatable_fields'))
             ->paginate($request->input('per_page'));
 
-        return $models;
+        $data->setCollection(
+            collect($data->items())
+                ->map(function($item){
+                    $item->body_translated = trim(strip_tags(html_entity_decode($item->body_translated)), '"');
+                    return $item;
+                }
+            )
+        );
+
+        return $data;
     }
 
     protected function updatePartial(Block $block, Request $request)
