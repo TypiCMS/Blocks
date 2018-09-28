@@ -4,10 +4,10 @@
 
 @section('content')
 
-    @include('core::admin._button-back', ['module' => 'blocks'])
-    <h1>
-        @lang('New content block')
-    </h1>
+    <div class="header">
+        @include('core::admin._button-back', ['module' => 'blocks'])
+        <h1 class="header-title">@lang('New content block')</h1>
+    </div>
 
     {!! BootForm::open()->action(route('admin::index-blocks'))->multipart()->role('form') !!}
         @include('blocks::admin._form')
