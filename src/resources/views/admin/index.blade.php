@@ -11,7 +11,7 @@
     translatable-fields="status,body"
     table="blocks"
     title="blocks"
-    :searchable="['name']"
+    :searchable="['name,body']"
     :sorting="['name']">
 
     <template slot="add-button">
