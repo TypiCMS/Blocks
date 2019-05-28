@@ -5,6 +5,8 @@
 @component('core::admin._buttons-form', ['model' => $model])
 @endcomponent
 
+<filepicker related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></filepicker>
+
 {!! BootForm::hidden('id') !!}
 
 {!! BootForm::text(__('Name'), 'name')->required() !!}
