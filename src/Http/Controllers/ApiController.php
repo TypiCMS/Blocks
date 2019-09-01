@@ -6,17 +6,11 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Blocks\Models\Block;
-use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 
 class ApiController extends BaseApiController
 {
-    public function __construct(EloquentBlock $block)
-    {
-        parent::__construct($block);
-    }
-
     public function index(Request $request)
     {
         $data = QueryBuilder::for(Block::class)
@@ -57,7 +51,7 @@ class ApiController extends BaseApiController
         }
         $saved = $block->save();
 
-        $this->repository->forgetCache();
+        $this->model->forgetCache();
 
         return response()->json([
             'error' => !$saved,
@@ -66,7 +60,7 @@ class ApiController extends BaseApiController
 
     public function destroy(Block $block)
     {
-        $deleted = $this->repository->delete($block);
+        $deleted = $block->delete();
 
         return response()->json([
             'error' => !$deleted,

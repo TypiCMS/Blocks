@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Blocks\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Blocks\Facades\Blocks;
-use TypiCMS\Modules\Blocks\Repositories\EloquentBlock;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -51,6 +50,6 @@ class ModuleProvider extends ServiceProvider
          */
         $app->register(RouteServiceProvider::class);
 
-        $app->bind('Blocks', EloquentBlock::class);
+        $app->bind('Blocks', Block::class);
     }
 }
