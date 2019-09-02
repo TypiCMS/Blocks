@@ -17,7 +17,7 @@ class AdminController extends BaseAdminController
 
     public function create(): View
     {
-        $model = new Block;
+        $model = new Block();
 
         return view('blocks::admin.create')
             ->with(compact('model'));
