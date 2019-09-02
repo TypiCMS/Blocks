@@ -2,28 +2,20 @@
 
 namespace TypiCMS\Modules\Blocks\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use TypiCMS\Modules\Blocks\Http\Requests\FormRequest;
 use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    /**
-     * List models.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
+    public function index(): View
     {
         return view('blocks::admin.index');
     }
 
-    /**
-     * Create form for a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    public function create(): View
     {
         $model = new Block;
 
@@ -31,44 +23,22 @@ class AdminController extends BaseAdminController
             ->with(compact('model'));
     }
 
-    /**
-     * Edit form for the specified resource.
-     *
-     * @param \TypiCMS\Modules\Blocks\Models\Block $block
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit(Block $block)
+    public function edit(Block $block): View
     {
         return view('blocks::admin.edit')
             ->with(['model' => $block]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \TypiCMS\Modules\Blocks\Http\Requests\FormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(FormRequest $request)
+    public function store(FormRequest $request): RedirectResponse
     {
-        $block = ::create($request->all());
+        $block = Block::create($request->all());
 
         return $this->redirect($request, $block);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \TypiCMS\Modules\Blocks\Models\Block              $block
-     * @param \TypiCMS\Modules\Blocks\Http\Requests\FormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(Block $block, FormRequest $request)
+    public function update(Block $block, FormRequest $request): RedirectResponse
     {
-        ::update($request->id, $request->all());
+        $block->update($request->all());
 
         return $this->redirect($request, $block);
     }
