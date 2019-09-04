@@ -5,7 +5,7 @@ namespace TypiCMS\Modules\Blocks\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Spatie\QueryBuilder\Filter;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Blocks\Models\Block;
 use TypiCMS\Modules\Core\Filters\FilterOr;
@@ -17,10 +17,10 @@ class ApiController extends BaseApiController
     {
         $data = QueryBuilder::for(Block::class)
             ->selectFields($request->input('fields.blocks'))
+            ->allowedSorts(['status_translated', 'name', 'body_translated'])
             ->allowedFilters([
-                Filter::custom('name,body', FilterOr::class),
+                AllowedFilter::custom('name,body', new FilterOr),
             ])
-            ->translated($request->input('translatable_fields'))
             ->paginate($request->input('per_page'));
 
         $data->setCollection(
