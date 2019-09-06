@@ -21,4 +21,16 @@ class Block extends Base
         'status',
         'body',
     ];
+
+    public function render($name = null)
+    {
+        $args = func_get_args();
+        $args[] = config('app.locale');
+
+        $block = $this->where('name', $name)
+            ->published()
+            ->first();
+
+        return $block !== null ? $block->present()->body : '';
+    }
 }

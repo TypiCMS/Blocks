@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Blocks\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Blocks\Facades\Blocks;
+use TypiCMS\Modules\Blocks\Models\Block;
 
 class ModuleProvider extends ServiceProvider
 {
