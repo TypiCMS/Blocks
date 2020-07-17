@@ -6,7 +6,7 @@
 @component('core::admin._buttons-form', ['model' => $model])
 @endcomponent
 
-<filepicker related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></filepicker>
+<file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
 
 {!! BootForm::hidden('id') !!}
 
