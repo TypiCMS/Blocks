@@ -10,6 +10,8 @@ class FormRequest extends AbstractFormRequest
     {
         return [
             'name' => 'required|max:255|alpha_dash|unique:blocks,name,'.$this->id,
+            'status.*' => 'boolean',
+            'body.*' => 'nullable',
         ];
     }
 }

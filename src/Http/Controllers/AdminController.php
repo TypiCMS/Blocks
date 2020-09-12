@@ -31,14 +31,14 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $block = Block::create($request->all());
+        $block = Block::create($request->validated());
 
         return $this->redirect($request, $block);
     }
 
     public function update(Block $block, FormRequest $request): RedirectResponse
     {
-        $block->update($request->all());
+        $block->update($request->validated());
 
         return $this->redirect($request, $block);
     }

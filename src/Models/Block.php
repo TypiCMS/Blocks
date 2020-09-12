@@ -15,7 +15,7 @@ class Block extends Base
 
     protected $presenter = 'TypiCMS\Modules\Blocks\Presenters\BlockPresenter';
 
-    protected $guarded = ['id', 'exit'];
+    protected $guarded = [];
 
     public $translatable = [
         'status',
