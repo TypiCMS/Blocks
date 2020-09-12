@@ -8,8 +8,6 @@
 
 <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
 
-{!! BootForm::hidden('id') !!}
-
 {!! BootForm::text(__('Name'), 'name')->required() !!}
 
 <div class="form-group">
