@@ -8,6 +8,8 @@
 
 <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
 
+{!! BootForm::hidden('id') !!}
+
 @if ($model->id)
 {!! BootForm::hidden('name') !!}
 @else
