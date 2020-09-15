@@ -8,7 +8,11 @@
 
 <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
 
+@if ($model->id)
+{!! BootForm::hidden('name') !!}
+@else
 {!! BootForm::text(__('Name'), 'name')->required() !!}
+@endif
 
 <div class="form-group">
     {!! TranslatableBootForm::hidden('status')->value(0) !!}
