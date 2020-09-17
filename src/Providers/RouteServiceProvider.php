@@ -27,11 +27,11 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
-                $router->get('blocks', 'AdminController@index')->name('admin::index-blocks')->middleware('can:see-all-blocks');
-                $router->get('blocks/create', 'AdminController@create')->name('admin::create-block')->middleware('can:create-block');
-                $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block')->middleware('can:update-block');
-                $router->post('blocks', 'AdminController@store')->name('admin::store-block')->middleware('can:create-block');
-                $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block')->middleware('can:update-block');
+                $router->get('blocks', 'AdminController@index')->name('admin::index-blocks')->middleware('can:read blocks');
+                $router->get('blocks/create', 'AdminController@create')->name('admin::create-block')->middleware('can:create blocks');
+                $router->get('blocks/{block}/edit', 'AdminController@edit')->name('admin::edit-block')->middleware('can:update blocks');
+                $router->post('blocks', 'AdminController@store')->name('admin::store-block')->middleware('can:create blocks');
+                $router->put('blocks/{block}', 'AdminController@update')->name('admin::update-block')->middleware('can:update blocks');
             });
 
             /*
@@ -39,9 +39,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('blocks', 'ApiController@index')->middleware('can:see-all-blocks');
-                    $router->patch('blocks/{block}', 'ApiController@updatePartial')->middleware('can:update-block');
-                    $router->delete('blocks/{block}', 'ApiController@destroy')->middleware('can:delete-block');
+                    $router->get('blocks', 'ApiController@index')->middleware('can:read blocks');
+                    $router->patch('blocks/{block}', 'ApiController@updatePartial')->middleware('can:update blocks');
+                    $router->delete('blocks/{block}', 'ApiController@destroy')->middleware('can:delete blocks');
                 });
             });
         });
