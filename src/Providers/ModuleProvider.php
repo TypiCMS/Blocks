@@ -20,7 +20,10 @@ class ModuleProvider extends ServiceProvider
         $this->app['config']->set('typicms.modules', array_merge(['blocks' => []], $modules));
 
         $this->loadViewsFrom(__DIR__.'/../resources/views/', 'blocks');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations/create_blocks_table.php.stub' => getMigrationFileName('create_blocks_table'),
+        ], 'migrations');
 
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/blocks'),
@@ -29,7 +32,7 @@ class ModuleProvider extends ServiceProvider
         AliasLoader::getInstance()->alias('Blocks', Blocks::class);
 
         Blade::directive('block', function ($name) {
-            return "<?php echo Blocks::render($name) ?>";
+            return "<?php echo Blocks::render({$name}) ?>";
         });
 
         /*
