@@ -9,7 +9,7 @@ use TypiCMS\Modules\Blocks\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Blocks\Facades\Blocks;
 use TypiCMS\Modules\Blocks\Models\Block;
 
-class ModuleProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
