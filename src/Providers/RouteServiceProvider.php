@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
                 $router->get('blocks', [AdminController::class, 'index'])->name('admin::index-blocks')->middleware('can:read blocks');
                 $router->get('blocks/create', [AdminController::class, 'create'])->name('admin::create-block')->middleware('can:create blocks');
-                $router->get('blocks/{block}/edit', [AdminController::class, 'edit'])->name('admin::edit-block')->middleware('can:update blocks');
+                $router->get('blocks/{block}/edit', [AdminController::class, 'edit'])->name('admin::edit-block')->middleware('can:read blocks');
                 $router->post('blocks', [AdminController::class, 'store'])->name('admin::store-block')->middleware('can:create blocks');
                 $router->put('blocks/{block}', [AdminController::class, 'update'])->name('admin::update-block')->middleware('can:update blocks');
             });
