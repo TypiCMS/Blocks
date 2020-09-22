@@ -19,7 +19,7 @@ class SidebarViewComposer
             $group->weight = 30;
             $group->addItem(__('Content blocks'), function (SidebarItem $item) {
                 $item->id = 'blocks';
-                $item->icon = config('typicms.blocks.sidebar.icon', 'icon fa fa-fw fa-list-alt');
+                $item->icon = config('typicms.blocks.sidebar.icon');
                 $item->weight = config('typicms.blocks.sidebar.weight');
                 $item->route('admin::index-blocks');
                 $item->append('admin::create-block');
