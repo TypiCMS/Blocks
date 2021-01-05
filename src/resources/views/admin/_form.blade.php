@@ -16,7 +16,7 @@
 {!! BootForm::text(__('Name'), 'name')->required() !!}
 @endif
 
-<div class="form-group">
+<div class="mb-3">
     {!! TranslatableBootForm::hidden('status')->value(0) !!}
     {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
 </div>
