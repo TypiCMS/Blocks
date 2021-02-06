@@ -8,10 +8,8 @@ class BlockPresenter extends Presenter
 {
     /**
      * Get title.
-     *
-     * @return string
      */
-    public function title()
+    public function title(): string
     {
         return $this->entity->name;
     }
