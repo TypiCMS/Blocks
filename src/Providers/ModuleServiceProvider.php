@@ -13,20 +13,20 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.blocks');
-        $this->mergeConfigFrom(__DIR__.'/../config/permissions.php', 'typicms.permissions');
+        $this->mergeConfigFrom(__DIR__.'/../../config/config.php', 'typicms.blocks');
+        $this->mergeConfigFrom(__DIR__.'/../../config/permissions.php', 'typicms.permissions');
 
         $modules = $this->app['config']['typicms']['modules'];
         $this->app['config']->set('typicms.modules', array_merge(['blocks' => []], $modules));
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'blocks');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'blocks');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/create_blocks_table.php.stub' => getMigrationFileName('create_blocks_table'),
+            __DIR__.'/../../database/migrations/create_blocks_table.php.stub' => getMigrationFileName('create_blocks_table'),
         ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/blocks'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/blocks'),
         ], 'views');
 
         AliasLoader::getInstance()->alias('Blocks', Blocks::class);
