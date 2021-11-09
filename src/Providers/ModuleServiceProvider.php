@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Blocks\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Blocks\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Blocks\Facades\Blocks;
@@ -11,13 +12,10 @@ use TypiCMS\Modules\Blocks\Models\Block;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.blocks');
         $this->mergeConfigFrom(__DIR__.'/../config/permissions.php', 'typicms.permissions');
-
-        $modules = $this->app['config']['typicms']['modules'];
-        $this->app['config']->set('typicms.modules', array_merge(['blocks' => []], $modules));
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'blocks');
 
@@ -35,21 +33,13 @@ class ModuleServiceProvider extends ServiceProvider
             return "<?php echo Blocks::render({$name}) ?>";
         });
 
-        /*
-         * Sidebar view composer
-         */
-        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('core::admin._sidebar', SidebarViewComposer::class);
     }
 
-    public function register()
+    public function register(): void
     {
-        $app = $this->app;
+        $this->app->register(RouteServiceProvider::class);
 
-        /*
-         * Register route service provider
-         */
-        $app->register(RouteServiceProvider::class);
-
-        $app->bind('Blocks', Block::class);
+        $this->app->bind('Blocks', Block::class);
     }
 }
